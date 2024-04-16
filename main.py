@@ -5,7 +5,7 @@ from datetime import datetime
 import time
 
 
-bot = telebot.TeleBot("7107331036:AAF0-AgnOPA5_UTEprnfQ3YznRFau15sLdE")
+bot = telebot.TeleBot("6494717982:AAFfdXGtztaOPpE_ZVHSCza1USLfvUf12rs")
 
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(f"{now} starting")
