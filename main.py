@@ -5,7 +5,7 @@ from datetime import datetime
 import time
 
 
-bot = telebot.TeleBot("6494717982:AAFfdXGtztaOPpE_ZVHSCza1USLfvUf12rs")
+bot = telebot.TeleBot("7107331036:AAF0-AgnOPA5_UTEprnfQ3YznRFau15sLdE")
 
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(f"{now} starting")
@@ -30,13 +30,10 @@ print(f"{now} analyzing missed messages")
 @bot.message_handler(commands=["list", "table"])
 def sendtable(message):
     bot.send_message(message.chat.id, "Ожидайте")
-    with open("baseusers.xlsx", "rb") as tab:
-        filexlsx = tab.read()
-        time.sleep(1)
-        tab.close()
+    table = open("baseusers.xlsx", "rb")
     time.sleep(1)
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    bot.send_document(message.chat.id, filexlsx)
+    bot.send_document(message.chat.id, table)
     bot.send_message(message.chat.id, f"Актуально на {now}")
 
 @bot.message_handler(commands=["amount"])
