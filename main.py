@@ -7,6 +7,8 @@ import time
 
 bot = telebot.TeleBot("6494717982:AAFfdXGtztaOPpE_ZVHSCza1USLfvUf12rs")
 
+#bot = telebot.TeleBot("7107331036:AAF0-AgnOPA5_UTEprnfQ3YznRFau15sLdE")
+
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(f"{now} starting")
 
@@ -21,11 +23,32 @@ contenttxt = f.read()
 f.close()
 wb.save(fn)
 
-
+iscensormats = False
 
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(f"{now} analyzing missed messages")
     
+
+@bot.message_handler(commands=["mats", "switchmats"])
+def mats(message):
+    if message.from_user.id == 5893427261 or 6312217343:
+        global iscensormats
+        if iscensormats == True:
+            iscensormats = False
+            time.sleep(1)
+            bot.send_message(message.chat.id, f"Переключено на {iscensormats}")
+        elif iscensormats == False:
+            iscensormats = True
+            time.sleep(1)
+            bot.send_message(message.chat.id, f"Переключено на {iscensormats}")
+
+@bot.message_handler(commands=["statusmats"])
+def statusmats(message):
+    if message.from_user.id == 5893427261 or 6312217343:
+        if iscensormats == True:
+            bot.send_message(message.chat.id, "Сейчас цензура матов включена!")
+        elif iscensormats == False:
+            bot.send_message(message.chat.id, "Сейчас цензура матов выключена!")
 
 @bot.message_handler(commands=["list", "table"])
 def sendtable(message):
@@ -67,7 +90,32 @@ def messagehandlers(message):
                 ws.append([now, message.from_user.first_name, message.from_user.last_name, message.from_user.username, message.from_user.is_premium, message.from_user.id])
                 k.write(f"{message.from_user.id}, ")
                 print(f"appended!")
-                wb.save(fn)    
+                wb.save(fn)
+    messageid = message.message_id
+    if message.chat.id == 2087495860:
+        if message.from_user.id == 5893427261 or 6312217343 or 1087968824 or 7074448544:
+            pass
+        else:
+            if iscensormats == True:
+                with open("words.txt", "r", encoding="utf-8") as t:
+                    wordstext = t.read()
+                    textmsg = message.text
+                    textmsglowwords = textmsg.split()
+                    print(textmsglowwords)
+                    i = 0
+                    while i < len(textmsglowwords):
+                        textmsg = textmsglowwords[i]
+                        textmsglow = textmsg.lower()
+                        isinwords = wordstext.find(textmsglow)
+                        if len(textmsglow) > 1:
+                            if isinwords != -1:
+                                bot.delete_message(message.chat.id, messageid)
+                                print(textmsglow)
+                                break
+                    i+=1
+
+                    
+            t.close()
     
 
 
