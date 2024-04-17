@@ -92,27 +92,26 @@ def messagehandlers(message):
                 print(f"appended!")
                 wb.save(fn)
     messageid = message.message_id
-    if message.chat.id == 2087495860:
-        if message.from_user.id == 5893427261 or 6312217343 or 1087968824 or 7074448544:
-            pass
-        else:
-            if iscensormats == True:
-                with open("words.txt", "r", encoding="utf-8") as t:
-                    wordstext = t.read()
-                    textmsg = message.text
-                    textmsglowwords = textmsg.split()
-                    print(textmsglowwords)
-                    i = 0
-                    while i < len(textmsglowwords):
-                        textmsg = textmsglowwords[i]
-                        textmsglow = textmsg.lower()
-                        isinwords = wordstext.find(textmsglow)
-                        if len(textmsglow) > 1:
-                            if isinwords != -1:
-                                bot.delete_message(message.chat.id, messageid)
-                                print(textmsglow)
-                                break
-                    i+=1
+    if message.from_user.id == 5893427261 or 6312217343 or 1087968824 or 7074448544:
+        pass
+    else:
+        if iscensormats == True:
+            with open("words.txt", "r", encoding="utf-8") as t:
+                wordstext = t.read()
+                textmsg = message.text
+                textmsglowwords = textmsg.split()
+                print(textmsglowwords)
+                i = 0
+                while i < len(textmsglowwords):
+                    textmsg = textmsglowwords[i]
+                    textmsglow = textmsg.lower()
+                    isinwords = wordstext.find(textmsglow)
+                    if len(textmsglow) > 1:
+                        if isinwords != -1:
+                            bot.delete_message(message.chat.id, messageid)
+                            print(textmsglow)
+                            break
+                i+=1
 
                     
             t.close()
