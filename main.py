@@ -91,7 +91,7 @@ def messagehandlers(message):
                 k.write(f"{message.from_user.id}, ")
                 print(f"appended!")
                 wb.save(fn)
-    messageid = message.message_id
+    """ messageid = message.message_id
     if iscensormats == True:
         with open("words.txt", "r", encoding="utf-8") as t:
             wordstext = t.read()
@@ -107,11 +107,12 @@ def messagehandlers(message):
                     if isinwords != -1:
                         bot.delete_message(message.chat.id, messageid)
                         print(textmsglow)
+                        i = 0
                         break
             i+=1
 
                     
-            t.close()
+            t.close() """
     
 
 
