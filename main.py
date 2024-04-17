@@ -5,9 +5,9 @@ from datetime import datetime
 import time
 
 
-bot = telebot.TeleBot("6494717982:AAFfdXGtztaOPpE_ZVHSCza1USLfvUf12rs")
+#bot = telebot.TeleBot("6494717982:AAFfdXGtztaOPpE_ZVHSCza1USLfvUf12rs")
 
-#bot = telebot.TeleBot("7107331036:AAF0-AgnOPA5_UTEprnfQ3YznRFau15sLdE")
+bot = telebot.TeleBot("7107331036:AAF0-AgnOPA5_UTEprnfQ3YznRFau15sLdE")
 
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(f"{now} starting")
@@ -92,26 +92,23 @@ def messagehandlers(message):
                 print(f"appended!")
                 wb.save(fn)
     messageid = message.message_id
-    if message.from_user.id == 5893427261 or 6312217343 or 1087968824 or 7074448544:
-        pass
-    else:
-        if iscensormats == True:
-            with open("words.txt", "r", encoding="utf-8") as t:
-                wordstext = t.read()
-                textmsg = message.text
-                textmsglowwords = textmsg.split()
-                print(textmsglowwords)
-                i = 0
-                while i < len(textmsglowwords):
-                    textmsg = textmsglowwords[i]
-                    textmsglow = textmsg.lower()
-                    isinwords = wordstext.find(textmsglow)
-                    if len(textmsglow) > 1:
-                        if isinwords != -1:
-                            bot.delete_message(message.chat.id, messageid)
-                            print(textmsglow)
-                            break
-                i+=1
+    if iscensormats == True:
+        with open("words.txt", "r", encoding="utf-8") as t:
+            wordstext = t.read()
+            textmsg = message.text
+            textmsglowwords = textmsg.split()
+            print(textmsglowwords)
+            i = 0
+            while i < len(textmsglowwords):
+                textmsg = textmsglowwords[i]
+                textmsglow = textmsg.lower()
+                isinwords = wordstext.find(textmsglow)
+                if len(textmsglow) > 1:
+                    if isinwords != -1:
+                        bot.delete_message(message.chat.id, messageid)
+                        print(textmsglow)
+                        break
+            i+=1
 
                     
             t.close()
