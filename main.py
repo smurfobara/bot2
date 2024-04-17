@@ -47,7 +47,7 @@ def amount(message):
 @bot.message_handler(commands=["userstxt"])
 def sendusers(message):
     txt = open("userstxt.txt", "rb")
-    bot.send_message(message.chat.id, txt)
+    bot.send_document(message.chat.id, txt)
     txt.close()
 
 @bot.message_handler()
