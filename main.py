@@ -44,6 +44,12 @@ def amount(message):
         bot.send_message(message.chat.id, f"Всего в таблице {volume} пользователей.")
         m.close()
 
+@bot.message_handler(commands=["userstxt"])
+def sendusers(message):
+    txt = open("userstxt.txt", "rb")
+    bot.send_message(message.chat.id, txt)
+    txt.close()
+
 @bot.message_handler()
 def messagehandlers(message):
     with open("userstxt.txt", "a") as k:
